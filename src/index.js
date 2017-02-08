@@ -45,4 +45,4 @@ export default (ComposedComponent) => class extends Component {
     );
   }
 
-});
+};
