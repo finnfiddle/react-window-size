@@ -13,8 +13,8 @@ class ScreenSize extends Component {
   render() {
     return (
       <p>
-        Screen's width is: {this.props.windowWidth}<br />
-        Screen's height is: {this.props.windowHeight}
+        Screen width is: {this.props.windowWidth}<br />
+        Screen height is: {this.props.windowHeight}
       </p>
     );
   }
