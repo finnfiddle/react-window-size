@@ -35,13 +35,11 @@ export default (ComposedComponent) => class extends Component {
   render() {
     // pass window dimensions as props to wrapped component
     return (
-      <div>
-        <ComposedComponent
-          {...this.props}
-          windowWidth={this.state.width}
-          windowHeight={this.state.height}
-        />
-      </div>
+      <ComposedComponent
+        {...this.props}
+        windowWidth={this.state.width}
+        windowHeight={this.state.height}
+      />
     );
   }
 
