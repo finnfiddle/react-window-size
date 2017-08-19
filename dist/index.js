@@ -130,14 +130,10 @@
         key: 'render',
         value: function render() {
           // pass window dimensions as props to wrapped component
-          return _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(ComposedComponent, _extends({}, this.props, {
-              windowWidth: this.state.width,
-              windowHeight: this.state.height
-            }))
-          );
+          return _react2.default.createElement(ComposedComponent, _extends({}, this.props, {
+            windowWidth: this.state.width,
+            windowHeight: this.state.height
+          }));
         }
       }]);
 
