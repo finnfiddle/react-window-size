@@ -1,6 +1,6 @@
 {
   "name": "react-window-size",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "React HOC that passes browser window size to wrapped component",
   "repository": {
     "type": "git",
@@ -58,7 +58,7 @@
     "sinon": "^1.17.3"
   },
   "peerDependencies": {
-    "react": "~0.14.8 || ^15.0.0"
+    "react": "~0.14.8 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
     "babel-runtime": "^6.6.1"
