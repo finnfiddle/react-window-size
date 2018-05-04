@@ -88,13 +88,13 @@
   }
 
   exports.default = function (ComposedComponent) {
-    return function (_Component) {
-      _inherits(_class, _Component);
+    var windowSize = function (_Component) {
+      _inherits(windowSize, _Component);
 
-      function _class() {
-        _classCallCheck(this, _class);
+      function windowSize() {
+        _classCallCheck(this, windowSize);
 
-        var _this = _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).call(this));
+        var _this = _possibleConstructorReturn(this, (windowSize.__proto__ || Object.getPrototypeOf(windowSize)).call(this));
 
         _this.state = {
           width: 0,
@@ -103,7 +103,7 @@
         return _this;
       }
 
-      _createClass(_class, [{
+      _createClass(windowSize, [{
         key: 'handleResize',
         value: function handleResize() {
           // set initial state
@@ -127,17 +127,32 @@
           window.removeEventListener('resize', this._handleResize);
         }
       }, {
+        key: 'getWrappedInstance',
+        value: function getWrappedInstance() {
+          return this.wrappedInstance;
+        }
+      }, {
         key: 'render',
         value: function render() {
+          var _this2 = this;
+
           // pass window dimensions as props to wrapped component
           return _react2.default.createElement(ComposedComponent, _extends({}, this.props, {
+            ref: function ref(c) {
+              _this2.wrappedInstance = c;
+            },
             windowWidth: this.state.width,
             windowHeight: this.state.height
           }));
         }
       }]);
 
-      return _class;
+      return windowSize;
     }(_react.Component);
+
+    var composedComponentName = ComposedComponent.displayName || ComposedComponent.name || 'Component';
+
+    windowSize.displayName = 'windowSize(' + composedComponentName + ')';
+    return windowSize;
   };
 });

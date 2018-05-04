@@ -34,11 +34,16 @@ export default (ComposedComponent) => {
       window.removeEventListener('resize', this._handleResize);
     }
 
+    getWrappedInstance() {
+      return this.wrappedInstance;
+    }
+
     render() {
       // pass window dimensions as props to wrapped component
       return (
         <ComposedComponent
           {...this.props}
+          ref={c => { this.wrappedInstance = c; }}
           windowWidth={this.state.width}
           windowHeight={this.state.height}
         />
