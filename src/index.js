@@ -9,8 +9,8 @@ export default (ComposedComponent) => {
     constructor() {
       super();
       this.state = {
-        width: 0,
-        height: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
       };
     }
 
@@ -25,7 +25,6 @@ export default (ComposedComponent) => {
     componentDidMount() {
       // bind window resize listeners
       this._handleResize = this.handleResize.bind(this);
-      this._handleResize();
       window.addEventListener('resize', this._handleResize);
     }
 
