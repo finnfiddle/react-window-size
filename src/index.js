@@ -9,16 +9,16 @@ export default (ComposedComponent) => {
     constructor() {
       super();
       this.state = {
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: document.body.clientWidth,
+        height: document.body.clientHeight,
       };
     }
 
     handleResize() {
       // set initial state
       this.setState({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: document.body.clientWidth,
+        height: document.body.clientHeight,
       });
     }
 
@@ -26,6 +26,7 @@ export default (ComposedComponent) => {
       // bind window resize listeners
       this._handleResize = this.handleResize.bind(this);
       window.addEventListener('resize', this._handleResize);
+      setTimeout(this._handleResize, 1000);
     }
 
     componentWillUnmount() {

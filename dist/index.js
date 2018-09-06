@@ -97,8 +97,8 @@
         var _this = _possibleConstructorReturn(this, (windowSize.__proto__ || Object.getPrototypeOf(windowSize)).call(this));
 
         _this.state = {
-          width: 0,
-          height: 0
+          width: document.body.clientWidth,
+          height: document.body.clientHeight
         };
         return _this;
       }
@@ -108,8 +108,8 @@
         value: function handleResize() {
           // set initial state
           this.setState({
-            width: window.innerWidth,
-            height: window.innerHeight
+            width: document.body.clientWidth,
+            height: document.body.clientHeight
           });
         }
       }, {
@@ -117,8 +117,8 @@
         value: function componentDidMount() {
           // bind window resize listeners
           this._handleResize = this.handleResize.bind(this);
-          this._handleResize();
           window.addEventListener('resize', this._handleResize);
+          setTimeout(this._handleResize, 1000);
         }
       }, {
         key: 'componentWillUnmount',
