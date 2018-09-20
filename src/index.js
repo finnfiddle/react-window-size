@@ -8,9 +8,10 @@ export default (ComposedComponent) => {
 
     constructor() {
       super();
+      const isServer = typeof window === 'undefined';
       this.state = {
-        width: document.body.clientWidth,
-        height: document.body.clientHeight,
+        width: isServer ? null : document.body.clientWidth,
+        height: isServer ? null : document.body.clientHeight,
       };
     }
 
