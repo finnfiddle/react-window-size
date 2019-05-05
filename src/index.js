@@ -26,12 +26,15 @@ export default (ComposedComponent) => {
       // bind window resize listeners
       this._handleResize = this.handleResize.bind(this);
       window.addEventListener('resize', this._handleResize);
-      setTimeout(this._handleResize, 1000);
+      this._handleResizeTimeout = setTimeout(this._handleResize, 1000);
     }
 
     componentWillUnmount() {
       // clean up listeners
       window.removeEventListener('resize', this._handleResize);
+      if (this._handleResizeTimeout) {
+        clearTimeout(this._handleResizeTimeout);
+      }
     }
 
     getWrappedInstance() {
