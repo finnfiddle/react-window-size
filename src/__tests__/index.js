@@ -13,13 +13,18 @@ Object.keys(document.defaultView).forEach((property) => {
 global.navigator = {
   userAgent: 'node.js',
 };
+document.body.clientHeight = 768;
+document.body.clientWidth = 1024;
 
 // documentRef = document;
 
 import React from 'react';
-import { mount } from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
 import { assert } from 'chai';
 import windowSize from '../index';
+import Adapter from 'enzyme-adapter-react-16';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 const ScreenSize = (props) => (
   <div>{`===${props.windowWidth}===${props.windowHeight}===`}</div>
@@ -30,7 +35,7 @@ describe('windowSize', () => {
   it('should have a display name with the name of the composed component', () => {
     const EnhancedComponent = windowSize(ScreenSize);
     const wrapper = mount(<div><EnhancedComponent /></div>);
-    assert.equal(wrapper.children().at(0).name(), `windowSize(${ScreenSize.name})`);
+    assert.equal(wrapper.children().at(0).name(), `ForwardRef(windowSize(${ScreenSize.name}))`);
   });
 
   it('should have a display name with the display name of the composed component if given', () => {
@@ -38,7 +43,8 @@ describe('windowSize', () => {
     try {
       const EnhancedComponent = windowSize(ScreenSize);
       const wrapper = mount(<div><EnhancedComponent /></div>);
-      assert.equal(wrapper.children().at(0).name(), `windowSize(${ScreenSize.displayName})`);
+      assert.equal(wrapper.children().at(0).name(),
+        `ForwardRef(windowSize(${ScreenSize.displayName}))`);
     }
     finally {
       delete ScreenSize.displayName;

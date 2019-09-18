@@ -1,6 +1,6 @@
 {
   "name": "react-window-size",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "React HOC that passes browser window size to wrapped component",
   "repository": {
     "type": "git",
@@ -43,7 +43,8 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-2": "^6.5.0",
     "chai": "^3.5.0",
-    "enzyme": "^2.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^2.11.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
@@ -52,15 +53,15 @@
     "jsdom": "^8.5.0",
     "mocha": "^2.4.5",
     "nodemon": "^1.9.1",
-    "react": "^15.0.0",
-    "react-addons-test-utils": "^15.0.0",
-    "react-dom": "^15.0.0",
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0",
     "sinon": "^1.17.3"
   },
   "peerDependencies": {
     "react": "~0.14.8 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "babel-runtime": "^6.6.1"
+    "babel-runtime": "^6.6.1",
+    "test-utils": "^1.1.1"
   }
 }
