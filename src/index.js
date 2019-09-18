@@ -1,11 +1,10 @@
 // higher-order component that passes the dimensions of the window as props to
 // the wrapped component
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default (ComposedComponent) => {
-
-  class windowSize extends Component {
-
+function windowSize(Component) {
+  class WindowSize extends React.Component {
     constructor() {
       super();
       this.state = {
@@ -34,29 +33,37 @@ export default (ComposedComponent) => {
       window.removeEventListener('resize', this._handleResize);
     }
 
-    getWrappedInstance() {
-      return this.wrappedInstance;
-    }
-
     render() {
+      const { forwardRef, ...rest } = this.props;
+
       // pass window dimensions as props to wrapped component
       return (
-        <ComposedComponent
-          {...this.props}
-          ref={c => { this.wrappedInstance = c; }}
+        <Component
+          {...rest}
+          ref={forwardRef}
           windowWidth={this.state.width}
           windowHeight={this.state.height}
         />
       );
     }
-
   }
 
-  const composedComponentName = ComposedComponent.displayName
-    || ComposedComponent.name
-    || 'Component';
+  WindowSize.propTypes = {
+    forwardRef: PropTypes.element,
+  };
 
-  windowSize.displayName = `windowSize(${composedComponentName})`;
-  return windowSize;
+  function forwardRef(props, ref) {
+    return <WindowSize {...props} forwardRef={ref} />;
+  }
 
+  const name = Component.displayName || Component.name || 'Component';
+  forwardRef.displayName = `windowSize(${name})`;
+
+  return React.forwardRef(forwardRef);
+}
+
+windowSize.propTypes = {
+  Component: PropTypes.element,
 };
+
+export default windowSize;
